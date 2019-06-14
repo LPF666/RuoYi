@@ -42,10 +42,17 @@ user:
 
 # Spring配置
 spring:
-  # 模板引擎
+  #一般来说       springboot默认静态资源就是resources-》static目录下，但是总有各种各样的原因，所以还是直接配置一下比较好
+  mvc:
+    static-path-pattern: /**
+    resources:
+          static-locations: classpath:/static/
+  # 模板引擎      一般来说被thymeleaf修饰的页面一般是thymeleaf默认在resources-》templates目录下作为前缀，表示被thymeleaf修饰的页面在这里作为根目录。（注意：不是静态资源）
   thymeleaf:
     mode: HTML
     encoding: utf-8
+    prefix: classpath:/templates/
+    suffix: .html
     # 禁用缓存
     cache: false
   # 资源信息
@@ -89,8 +96,8 @@ pagehelper:
 # Shiro
 shiro:
   user:
-    # 登录地址
-    loginUrl: /login
+    # 登录地址 /login
+    loginUrl: /peakwebsite
     # 权限认证失败地址
     unauthorizedUrl: /unauth
     # 首页地址
